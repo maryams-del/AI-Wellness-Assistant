@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI Wellness Assistant</title>
+  <style>
+    body {
+      background-color: #121212;
+      color: #f0f0f0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      padding: 40px;
+    }
+
+    #chat {
+      width: 100%;
+      max-width: 600px;
+      background-color: #1e1e1e;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.4);
+    }
+
+    #messages {
+      height: 350px;
+      overflow-y: auto;
+      border: 1px solid #333;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      background-color: #2a2a2a;
+    }
+
+    .msg {
+      margin-bottom: 12px;
+      line-height: 1.4em;
+    }
+
+    .user {
+      color: #80cbc4;
+    }
+
+    .bot {
+      color: #c792ea;
+    }
+
+    input[type="text"] {
+      width: 75%;
+      padding: 12px;
+      border-radius: 8px;
+      border: none;
+      background-color: #2a2a2a;
+      color: #f0f0f0;
+      outline: none;
+    }
+
+    button {
+      padding: 12px 18px;
+      border: none;
+      background-color: #4a90e2;
+      color: white;
+      border-radius: 8px;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #357ab8;
+    }
+  </style>
+</head>
+<body>
+
+<div id="chat">
+  <h2 style="text-align:center; margin-bottom: 20px;">🩺 AI Wellness Assistant</h2>
+  <div id="messages"></div>
+  <div style="display: flex;">
+    <input type="text" id="userInput" placeholder="Type your health concern..." />
+    <button onclick="sendMessage()">Send</button>
+  </div>
+</div>
+
+<script>
+  function getTimestamp() {
+    const now = new Date();
+    return now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  }
+
+  function enhanceReply(reply) {
+    if (!reply) return "";
+    if (reply.toLowerCase().includes("sleep")) return "😴 " + reply;
+    if (reply.toLowerCase().includes("diet") || reply.toLowerCase().includes("food")) return "🍽️ " + reply;
+    if (reply.toLowerCase().includes("hydrate") || reply.toLowerCase().includes("water")) return "💧 " + reply;
+    if (reply.toLowerCase().includes("exercise") || reply.toLowerCase().includes("activity")) return "🏃 " + reply;
+    return reply;
+  }
+
+  async function sendMessage() {
+    const inputBox = document.getElementById("userInput");
+    const messages = document.getElementById("messages");
+    const userText = inputBox.value.trim();
+    if (!userText) return;
+
+    const timestamp = getTimestamp();
+    messages.innerHTML += `<div class="msg user"><strong>You [${timestamp}]:</strong> ${userText}</div>`;
+    inputBox.value = "";
+
+    const response = await fetch("/send", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        jsonrpc: "2.0",
+        method: "process_input",
+        params: { text: userText },
+        id: 1
+      })
+    });
+
+    const result = await response.json();
+    console.log("Raw response:", result.result);
+
+    let rawReply = result.result;
+    let reply = "⚠️ Unexpected response format.";
+
+    if (typeof rawReply === "string") {
+      reply = rawReply;
+    } else if (rawReply?.text) {
+      reply = rawReply.text;
+    } else if (Array.isArray(rawReply?.parts) && rawReply.parts[0]?.text) {
+      reply = rawReply.parts[0].text;
+    }
+
+    const formatted = enhanceReply(reply);
+    messages.innerHTML += `<div class="msg bot"><strong>Assistant [${getTimestamp()}]:</strong> ${formatted}</div>`;
+    messages.scrollTop = messages.scrollHeight;
+  }
+</script>
+
+</body>
+</html>

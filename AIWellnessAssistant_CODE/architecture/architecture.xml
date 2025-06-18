@@ -1,0 +1,46 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="A2A Architecture" id="gkUqsdfgHDK">
+    <mxGraphModel dx="1464" dy="786" grid="1" gridSize="10" guides="1">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="user" value="User (Web Browser)" style="shape=ellipse;whiteSpace=wrap;html=1;fillColor=#ececec;" vertex="1" parent="1">
+          <mxGeometry x="20" y="120" width="120" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="ui" value="Flask UI (localhost:8000)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dfeeff;" vertex="1" parent="1">
+          <mxGeometry x="180" y="120" width="160" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="orchestrator" value="OrchestratorAgent (localhost:10002)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffdede;" vertex="1" parent="1">
+          <mxGeometry x="380" y="120" width="200" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="symptom" value="SymptomCheckerAgent (localhost:10001)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fffacc;" vertex="1" parent="1">
+          <mxGeometry x="620" y="60" width="200" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="lifestyle" value="LifestyleRecommenderAgent (localhost:10000)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ccffe5;" vertex="1" parent="1">
+          <mxGeometry x="620" y="180" width="200" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e1" edge="1" source="user" target="ui" style="endArrow=block;" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e2" edge="1" source="ui" target="orchestrator" style="endArrow=block;" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e3" edge="1" source="orchestrator" target="symptom" style="endArrow=block;" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e4" edge="1" source="orchestrator" target="lifestyle" style="endArrow=block;" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
