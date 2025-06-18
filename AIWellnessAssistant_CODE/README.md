@@ -61,7 +61,8 @@ version_3_multi_agent/
 
 3. **Install dependencies**
 
-    ```pip install asyncclick click fastapi google-adk google-genai httpx httpx-sse pydantic python-dotenv starlette uvicorn    
+    ```bash
+    pip install asyncclick click fastapi google-adk google-genai httpx httpx-sse pydantic python-dotenv starlette uvicorn    
     ```
 
 4. **Set your API key**
@@ -136,9 +137,9 @@ Agent says: * Gradually replace unhealthy snacks with fruits and vegetables.
 
 ---
 ## Testing
-## See test_scenarios.md in "testing" folder
+# See test_scenarios.md in "testing" folder
 ## Architecture:
-## See "architecture" folder
+# See "architecture" folder
 
 ## 📖 Learn More
 
