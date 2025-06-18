@@ -14,7 +14,7 @@ All of them work together seamlessly via A2A discovery and JSON-RPC.
 ## 📦 Project Structure
 
 ```bash
-version_3_multi_agent/
+AIWellnessAssistant_CODE/
 ├── .env                         # Your GOOGLE_API_KEY (not committed)
 ├── pyproject.toml              # Dependency config
 ├── README.md                   # You are reading it!
@@ -40,6 +40,26 @@ version_3_multi_agent/
 └── utilities/
     ├── discovery.py            # Finds agents via `agent_registry.json`
     └── agent_registry.json     # List of child-agent URLs (one per line)
+|__client/
+    └── client.py       
+|__architecture/
+    ├── architecture_diagram.png # Diagram of the architecture
+    ├── architecture.xml   
+    └── architecture.md
+|__models/
+    ├── agent.py
+    ├── json_rpc.py
+    ├── task.py  
+    └── request.py
+|__testing/
+    └── test_scenarious.md
+|__ui/
+    ├── .env
+    ├── app.py
+    ├── templates.py  
+            └── index.html
+
+
 ```
 
 ---
