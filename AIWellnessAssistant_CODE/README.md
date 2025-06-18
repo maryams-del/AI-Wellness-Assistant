@@ -38,25 +38,25 @@ AIWellnessAssistant_CODE/
 │   ├── server.py               # A2A JSON-RPC server implementation
 │   └── task_manager.py         # Base in-memory task manager interface
 └── utilities/
-    ├── discovery.py            # Finds agents via `agent_registry.json`
-    └── agent_registry.json     # List of child-agent URLs (one per line)
-|__client/
-    └── client.py       
-|__architecture/
-    ├── architecture_diagram.png # Diagram of the architecture
-    ├── architecture.xml   
-    └── architecture.md
-|__models/
-    ├── agent.py
-    ├── json_rpc.py
-    ├── task.py  
-    └── request.py
-|__testing/
-    └── test_scenarious.md
-|__ui/
-    ├── .env
-    ├── app.py
-    ├── templates.py  
+|    ├── discovery.py            # Finds agents via `agent_registry.json`
+|    └── agent_registry.json     # List of child-agent URLs (one per line)
+├──client/
+|    └── client.py       
+├──architecture/
+|    ├── architecture_diagram.png # Diagram of the architecture
+|    ├── architecture.xml   
+|    └── architecture.md
+├──models/
+|    ├── agent.py
+|    ├── json_rpc.py
+|    ├── task.py  
+|    └── request.py
+├──testing/
+|    └── test_scenarious.md
+├──ui/
+|    ├── .env
+|    ├── app.py
+|    └── templates.py  
             └── index.html
 
 
